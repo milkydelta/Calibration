@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ExternalCamera-Calibration"
+run/main_scene="uid://pimxgdym3ql7"
+config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
+
+[xr]
+
+openxr/enabled=true
+openxr/default_action_map="uid://c1kxol5uymyn4"
+openxr/foveation_eye_tracked=false
+openxr/foveation_with_subsampled_images=false
+openxr/extensions/render_model=true
+shaders/enabled=true

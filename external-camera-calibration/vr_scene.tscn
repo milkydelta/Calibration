@@ -1,0 +1,719 @@
+[gd_scene format=3 uid="uid://pimxgdym3ql7"]
+
+[ext_resource type="Script" uid="uid://dfkhsixj70na0" path="res://xr_init_script.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bch3t81ao5ple" path="res://vr_scene.gd" id="1_eatjh"]
+[ext_resource type="Environment" uid="uid://cbmd035kvx4ya" path="res://new_environment.tres" id="1_noarx"]
+[ext_resource type="Texture2D" uid="uid://bxgqyx43782cw" path="res://cross.png" id="3_a0tk4"]
+[ext_resource type="Script" uid="uid://x06cxq8cqouw" path="res://methon_gui_button.gd" id="4_qmmxw"]
+[ext_resource type="Script" uid="uid://bld0j6d12gke7" path="res://disable_in_release.gd" id="5_3pkox"]
+[ext_resource type="Script" uid="uid://di7836t4tlhku" path="res://grid_container.gd" id="6_dat4l"]
+[ext_resource type="Script" uid="uid://b0b064lywa32n" path="res://slider_x.gd" id="6_nvmjw"]
+[ext_resource type="Script" uid="uid://b3u1ciygi581l" path="res://webcam_menu.gd" id="6_r2du3"]
+[ext_resource type="Script" uid="uid://dcvonx04pmo34" path="res://export.gd" id="9_cuca5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m18wo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_m18wo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m18wo"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm5dg"]
+bg_color = Color(0.45452422, 0.45452428, 0.45452416, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3k8r0"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eatjh"]
+
+[sub_resource type="CameraTexture" id="CameraTexture_r2du3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tm5dg"]
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_poouq"]
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m5ku2"]
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3k8r0"]
+viewport_path = NodePath("FakeCamViewport")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_noarx"]
+
+[sub_resource type="Sky" id="Sky_a202f"]
+sky_material = SubResource("ProceduralSkyMaterial_noarx")
+
+[sub_resource type="Environment" id="Environment_m18wo"]
+background_mode = 3
+sky = SubResource("Sky_a202f")
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmmxw"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0.016666412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvmjw"]
+shading_mode = 0
+albedo_color = Color(0, 0.18333316, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dat4l"]
+shading_mode = 0
+albedo_color = Color(1, 0.9333334, 0, 1)
+
+[node name="Node3D" type="Node3D" unique_id=610465811 node_paths=PackedStringArray("specCam", "leftCon", "rightCon", "textLabel", "countLabel", "rcen", "bcen", "ycen")]
+script = ExtResource("1_eatjh")
+specCam = NodePath("CameraHolder/Camera3D")
+leftCon = NodePath("VRCamViewport/XROrigin3D/LeftCon")
+rightCon = NodePath("VRCamViewport/XROrigin3D/RightCon")
+textLabel = NodePath("PointCanvasLayer/TopLabel")
+countLabel = NodePath("PointCanvasLayer/HFlowContainer/num")
+rcen = NodePath("RED")
+bcen = NodePath("BLUE")
+ycen = NodePath("YLW")
+
+[node name="VRCamViewport" type="SubViewport" parent="." unique_id=1426819499]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="VRCamViewport" unique_id=565836913]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D" unique_id=540005069]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("BoxMesh_m18wo")
+
+[node name="OpenXRRenderModelManager" type="OpenXRRenderModelManager" parent="VRCamViewport/XROrigin3D" unique_id=185209807]
+tracker = 1
+
+[node name="XRCamera3D" type="XRCamera3D" parent="VRCamViewport/XROrigin3D" unique_id=280832312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66, 0)
+cull_mask = 786431
+environment = ExtResource("1_noarx")
+far = 100.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D/XRCamera3D" unique_id=2060478871]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+layers = 262144
+mesh = SubResource("SphereMesh_m18wo")
+
+[node name="LeftCon" type="XRController3D" parent="VRCamViewport/XROrigin3D" unique_id=633237079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, -0.2)
+tracker = &"left_hand"
+pose = &"grip"
+
+[node name="OpenXRRenderModelManager" type="OpenXRRenderModelManager" parent="VRCamViewport/XROrigin3D/LeftCon" unique_id=631418982]
+tracker = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D/LeftCon" unique_id=709653649]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_m18wo")
+
+[node name="RightCon" type="XRController3D" parent="VRCamViewport/XROrigin3D" unique_id=1713965969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1, -0.2)
+tracker = &"right_hand"
+pose = &"grip"
+show_when_tracked = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D/RightCon" unique_id=1391462340]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+mesh = SubResource("SphereMesh_m18wo")
+
+[node name="OpenXRRenderModelManager" type="OpenXRRenderModelManager" parent="VRCamViewport/XROrigin3D/RightCon" unique_id=1651737622]
+tracker = 3
+
+[node name="XR_Init_Script" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=343970448]
+script = ExtResource("1_a202f")
+
+[node name="FakeCamViewport" type="SubViewport" parent="." unique_id=1571269763]
+size = Vector2i(1920, 1080)
+
+[node name="Camera3D2" type="Camera3D" parent="FakeCamViewport" unique_id=2016474691]
+transform = Transform3D(0.79545814, -0.34753412, 0.49645382, 0.050885715, 0.85463065, 0.51673675, -0.6038683, -0.3857801, 0.6975075, 1, 1.6, 1.311)
+cull_mask = 524287
+environment = ExtResource("1_noarx")
+far = 100.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FakeCamViewport/Camera3D2" unique_id=1354540639]
+transform = Transform3D(0.05, 0, 0, 0, 0.04502463, -0.021743566, 0, 0.021743566, 0.04502463, 0, 0, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_m18wo")
+
+[node name="MethodCanvasLayer" type="CanvasLayer" parent="." unique_id=65775461]
+layer = 2
+
+[node name="Label" type="Label" parent="MethodCanvasLayer" unique_id=1888247983]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "External camera calibration tool
+by milkydelta"
+label_settings = SubResource("LabelSettings_m18wo")
+
+[node name="Background" type="ColorRect" parent="MethodCanvasLayer" unique_id=2041753079]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.5019608)
+
+[node name="PanelContainer2" type="PanelContainer" parent="MethodCanvasLayer" unique_id=103308719]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -140.0
+offset_right = 256.0
+offset_bottom = 140.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tm5dg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MethodCanvasLayer/PanelContainer2" unique_id=934686666]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MethodCanvasLayer/PanelContainer2/VBoxContainer" unique_id=113824616]
+layout_mode = 2
+text = "3-Point"
+label_settings = SubResource("LabelSettings_3k8r0")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MethodCanvasLayer/PanelContainer2/VBoxContainer" unique_id=1336478835]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "\"We sort-of have a Magic Triangle\"
+
+
+
+ALMOST IMPLEMENTED"
+label_settings = SubResource("LabelSettings_eatjh")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MethodCanvasLayer/PanelContainer2/VBoxContainer" unique_id=504633401]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MethodCanvasLayer/PanelContainer2/VBoxContainer/CenterContainer" unique_id=1187269993]
+layout_mode = 2
+text = "I am ready"
+script = ExtResource("4_qmmxw")
+method = "MAGIC"
+
+[node name="PanelContainer" type="PanelContainer" parent="MethodCanvasLayer" unique_id=1913828062]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -140.0
+offset_right = 128.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tm5dg")
+script = ExtResource("5_3pkox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MethodCanvasLayer/PanelContainer" unique_id=1827384348]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MethodCanvasLayer/PanelContainer/VBoxContainer" unique_id=458513766]
+layout_mode = 2
+text = "N-Point"
+label_settings = SubResource("LabelSettings_3k8r0")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MethodCanvasLayer/PanelContainer/VBoxContainer" unique_id=1357912541]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "DESCRIBE METHOD HERE"
+label_settings = SubResource("LabelSettings_eatjh")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MethodCanvasLayer/PanelContainer/VBoxContainer" unique_id=1430343633]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MethodCanvasLayer/PanelContainer/VBoxContainer/CenterContainer" unique_id=1205058264]
+layout_mode = 2
+text = "I am ready"
+script = ExtResource("4_qmmxw")
+method = "REGULAR"
+
+[node name="PanelContainer3" type="PanelContainer" parent="MethodCanvasLayer" unique_id=586667177]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -140.0
+offset_bottom = 140.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tm5dg")
+script = ExtResource("5_3pkox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MethodCanvasLayer/PanelContainer3" unique_id=597431307]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MethodCanvasLayer/PanelContainer3/VBoxContainer" unique_id=81973985]
+layout_mode = 2
+text = "12? Point"
+label_settings = SubResource("LabelSettings_3k8r0")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MethodCanvasLayer/PanelContainer3/VBoxContainer" unique_id=644557156]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "There's a maths thing called a Direct Linear Transform.
+Apparrently, it's useful for camera calibration in CV stuff. I'd like to try it out.
+
+CURRENTLY BROKEN"
+label_settings = SubResource("LabelSettings_eatjh")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MethodCanvasLayer/PanelContainer3/VBoxContainer" unique_id=743048799]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MethodCanvasLayer/PanelContainer3/VBoxContainer/CenterContainer" unique_id=1012117609]
+layout_mode = 2
+text = "I am ready"
+script = ExtResource("4_qmmxw")
+method = "BIGMATH"
+
+[node name="MenuButton" type="MenuButton" parent="MethodCanvasLayer" unique_id=1590757225 node_paths=PackedStringArray("rect")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -69.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Camera Selector"
+script = ExtResource("6_r2du3")
+tex = SubResource("CameraTexture_r2du3")
+rect = NodePath("../../BGCanvasLayer/TextureRect")
+
+[node name="PointCanvasLayer" type="CanvasLayer" parent="." unique_id=105748331]
+visible = false
+
+[node name="TopLabel" type="Label" parent="PointCanvasLayer" unique_id=1762144249]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_tm5dg")
+horizontal_alignment = 1
+
+[node name="InstLabel" type="Label" parent="PointCanvasLayer" unique_id=551399815]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 26.0
+offset_bottom = 52.0
+grow_horizontal = 2
+text = "Press MENU to record a point."
+label_settings = SubResource("LabelSettings_tm5dg")
+horizontal_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PointCanvasLayer" unique_id=2101613387]
+custom_minimum_size = Vector2(0, 26)
+propagate_maximum_size = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -418.0
+offset_bottom = 56.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="tex" type="Label" parent="PointCanvasLayer/HFlowContainer" unique_id=1994965238]
+layout_mode = 2
+text = "Points Recorded: "
+label_settings = SubResource("LabelSettings_poouq")
+
+[node name="num" type="Label" parent="PointCanvasLayer/HFlowContainer" unique_id=1693032241]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_m5ku2")
+
+[node name="points" type="Control" parent="PointCanvasLayer" unique_id=1476714061]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pointTL" type="Control" parent="PointCanvasLayer/points" unique_id=116131824]
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 168.0
+offset_bottom = 112.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointTL" unique_id=1052971519]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointTC" type="Control" parent="PointCanvasLayer/points" unique_id=1492358359]
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 72.0
+offset_right = 680.0
+offset_bottom = 112.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointTC" unique_id=114026787]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointTR" type="Control" parent="PointCanvasLayer/points" unique_id=1551803171]
+anchors_preset = 0
+offset_left = 1152.0
+offset_top = 72.0
+offset_right = 1192.0
+offset_bottom = 112.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointTR" unique_id=1401317440]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointML" type="Control" parent="PointCanvasLayer/points" unique_id=1390278590]
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 360.0
+offset_right = 168.0
+offset_bottom = 400.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointML" unique_id=247530377]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointMC" type="Control" parent="PointCanvasLayer/points" unique_id=850667935]
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 680.0
+offset_bottom = 400.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointMC" unique_id=832872984]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointMR" type="Control" parent="PointCanvasLayer/points" unique_id=1312444958]
+anchors_preset = 0
+offset_left = 1152.0
+offset_top = 360.0
+offset_right = 1192.0
+offset_bottom = 400.0
+
+[node name="TextureRect" type="TextureRect" parent="PointCanvasLayer/points/pointMR" unique_id=553296310]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointBL" type="Control" parent="PointCanvasLayer/points" unique_id=1083047385]
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 648.0
+offset_right = 168.0
+offset_bottom = 688.0
+
+[node name="TextureRect2" type="TextureRect" parent="PointCanvasLayer/points/pointBL" unique_id=1515765542]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointBC" type="Control" parent="PointCanvasLayer/points" unique_id=971263216]
+anchors_preset = 0
+offset_left = 640.0
+offset_top = 648.0
+offset_right = 680.0
+offset_bottom = 688.0
+
+[node name="TextureRect2" type="TextureRect" parent="PointCanvasLayer/points/pointBC" unique_id=1867724514]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="pointBR" type="Control" parent="PointCanvasLayer/points" unique_id=84162005]
+anchors_preset = 0
+offset_left = 1152.0
+offset_top = 648.0
+offset_right = 1192.0
+offset_bottom = 688.0
+
+[node name="TextureRect2" type="TextureRect" parent="PointCanvasLayer/points/pointBR" unique_id=1217379878]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_a0tk4")
+
+[node name="AdjustmentCanvasLayer" type="CanvasLayer" parent="." unique_id=1661441380]
+visible = false
+
+[node name="Panel" type="Panel" parent="AdjustmentCanvasLayer" unique_id=1358497589]
+offset_right = 265.0
+offset_bottom = 190.0
+
+[node name="GridContainer" type="GridContainer" parent="AdjustmentCanvasLayer/Panel" unique_id=1289011966 node_paths=PackedStringArray("cam")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+script = ExtResource("6_dat4l")
+cam = NodePath("../../../CameraHolder/Camera3D")
+
+[node name="nameX" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1487375688]
+layout_mode = 2
+text = "X"
+horizontal_alignment = 2
+
+[node name="SliderX" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=211742659 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valX")
+
+[node name="valX" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1100466263]
+custom_minimum_size = Vector2(42, 0)
+clip_contents = true
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+
+[node name="nameY" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1136930039]
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 2
+
+[node name="SliderY" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1338444473 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valY")
+
+[node name="valY" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=430336668]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="nameZ" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1135297877]
+layout_mode = 2
+text = "Z"
+horizontal_alignment = 2
+
+[node name="SliderZ" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=146238683 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valZ")
+
+[node name="valZ" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=711470190]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="nameRx" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1663231875]
+layout_mode = 2
+text = "rX"
+horizontal_alignment = 2
+
+[node name="SliderRx" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1611333668 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -45.0
+max_value = 45.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valRx")
+
+[node name="valRx" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=749776382]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="nameRy" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=2139837485]
+layout_mode = 2
+text = "rY"
+horizontal_alignment = 2
+
+[node name="SliderRy" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=911494320 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -45.0
+max_value = 45.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valRy")
+
+[node name="valRy" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1653789762]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="nameRz" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=737557771]
+layout_mode = 2
+text = "rZ"
+horizontal_alignment = 2
+
+[node name="SliderRz" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1945028771 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -45.0
+max_value = 45.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valZ2")
+
+[node name="valZ2" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=436590084]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="nameFov" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1383013947]
+layout_mode = 2
+text = "f"
+horizontal_alignment = 2
+
+[node name="sliderFov" type="HSlider" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=2088614166 node_paths=PackedStringArray("lab")]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+step = 0.1
+script = ExtResource("6_nvmjw")
+lab = NodePath("../valFov")
+
+[node name="valFov" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=762234246]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 2
+clip_text = true
+
+[node name="Label" type="Label" parent="AdjustmentCanvasLayer/Panel" unique_id=268129785]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 23)
+text = "Adjustments (cm, degrees)"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="AdjustmentCanvasLayer" unique_id=1576383301 node_paths=PackedStringArray("specCam")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Export Config"
+script = ExtResource("9_cuca5")
+specCam = NodePath("../../CameraHolder/Camera3D")
+
+[node name="BGCanvasLayer" type="CanvasLayer" parent="." unique_id=408464210]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="BGCanvasLayer" unique_id=546031429]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_3k8r0")
+expand_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1533469476]
+environment = SubResource("Environment_m18wo")
+
+[node name="RED" type="MeshInstance3D" parent="." unique_id=1670846742]
+transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_m18wo")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmmxw")
+
+[node name="BLUE" type="MeshInstance3D" parent="." unique_id=988721280]
+transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+layers = 540672
+mesh = SubResource("SphereMesh_m18wo")
+surface_material_override/0 = SubResource("StandardMaterial3D_nvmjw")
+
+[node name="YLW" type="MeshInstance3D" parent="." unique_id=873918653]
+transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+layers = 540672
+mesh = SubResource("SphereMesh_m18wo")
+surface_material_override/0 = SubResource("StandardMaterial3D_dat4l")
+
+[node name="CameraHolder" type="Node3D" parent="." unique_id=1945270324]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 10, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=1838429439]
+cull_mask = 507903
+near = 0.01
+far = 100.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraHolder/Camera3D" unique_id=190579668]
+transform = Transform3D(0.05, 0, 0, 0, 0.04502463, -0.021743566, 0, 0.021743566, 0.04502463, 0, 0, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_m18wo")
+
+[connection signal="button_released" from="VRCamViewport/XROrigin3D/LeftCon" to="." method="_on_left_con_button_released"]
+[connection signal="button_released" from="VRCamViewport/XROrigin3D/RightCon" to="." method="_on_right_con_button_released"]

@@ -1,0 +1,12 @@
+[package]
+name = "rustcalib"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+cam-geom = "0.17.0"
+dlt = "0.15.0"
+godot = "0.5.5"
