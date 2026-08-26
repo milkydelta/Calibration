@@ -3,6 +3,6 @@
 /android/
 
 # don't include the addon files for now
-addons
+addons/CameraServerExtension
 
 icon.svg
