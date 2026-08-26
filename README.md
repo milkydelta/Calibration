@@ -17,7 +17,8 @@ During development, I do/did most of my testing on Monado, using the QWERTY driv
 I have also used the Windows Mixed Reality runtime on Windows 10.
 
 <details>
-<summary> A thing to note </summary>
+<summary>A thing to note</summary>
+<br>
 
 I was able to launch the tool with SteamVR on Windows exactly once. The controller models appeared, and everything was great. Then, I closed it to change the camera. After that, SteamVR broke. The tool would launch, but with no controller tracking, and the headset view was a fully black 16px texture. The same thing then happened with all other OpenXR games, but no OpenVR games. The problem persisted across reboots, and when I switched my runtime to another one and back. Everything worked fine on the WMR runtime.
 
