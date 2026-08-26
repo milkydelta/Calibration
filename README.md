@@ -61,7 +61,7 @@ Install Godot 4.7
 
 Install a rust toolchain for your platform
 
-For non-Linux builds, install the CameraServer GDExtension from (this repo)[https://github.com/j20001970/godot-cameraserver-extension]
+For non-Linux builds, install the CameraServer GDExtension from [this repo](https://github.com/j20001970/godot-cameraserver-extension)
 
 Inside rustcalib, run `cargo build` to build the dlt GDExtension.
 
