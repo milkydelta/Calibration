@@ -109,6 +109,7 @@ pose = &"grip"
 
 [node name="OpenXRRenderModelManager" type="OpenXRRenderModelManager" parent="VRCamViewport/XROrigin3D/LeftCon" unique_id=631418982]
 tracker = 2
+make_local_to_pose = "grip"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D/LeftCon" unique_id=709653649]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
@@ -126,6 +127,7 @@ mesh = SubResource("SphereMesh_m18wo")
 
 [node name="OpenXRRenderModelManager" type="OpenXRRenderModelManager" parent="VRCamViewport/XROrigin3D/RightCon" unique_id=1651737622]
 tracker = 3
+make_local_to_pose = "grip"
 
 [node name="XR_Init_Script" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=343970448]
 script = ExtResource("1_a202f")

@@ -11,8 +11,8 @@ func godot_to_unity_rot(euler_rad: Vector3) -> Vector3:
 	var quat = Quaternion.from_euler(euler_rad)
 	quat.x = -quat.x
 	quat.y = -quat.y
-	return quat.get_euler(EULER_ORDER_ZXY)
-	#return quat.get_euler(EULER_ORDER_YXZ)
+	#return quat.get_euler(EULER_ORDER_ZXY)
+	return quat.get_euler(EULER_ORDER_YXZ)
 	
 
 ## Called when the node enters the scene tree for the first time.
