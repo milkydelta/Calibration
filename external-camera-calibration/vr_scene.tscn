@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://di7836t4tlhku" path="res://scripts/grid_container.gd" id="6_dat4l"]
 [ext_resource type="Script" uid="uid://b0b064lywa32n" path="res://scripts/slider_x.gd" id="6_nvmjw"]
 [ext_resource type="Script" uid="uid://b3u1ciygi581l" path="res://scripts/webcam_menu.gd" id="6_r2du3"]
+[ext_resource type="Script" uid="uid://djikr51h68out" path="res://scripts/tracker_menu.gd" id="7_geic2"]
 [ext_resource type="Script" uid="uid://dcvonx04pmo34" path="res://scripts/export_calibration.gd" id="9_cuca5"]
 [ext_resource type="Script" uid="uid://fcdngypf4ow6" path="res://scripts/camera_holder_origin.gd" id="11_r2du3"]
 
@@ -209,9 +210,7 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 text = "\"We sort-of have a Magic Triangle\"
 
-
-
-ALMOST IMPLEMENTED"
+This is the easiest method to perform, but you will need to add manual adjustments for the best result."
 label_settings = SubResource("LabelSettings_eatjh")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -322,6 +321,19 @@ text = "Camera Selector"
 script = ExtResource("6_r2du3")
 tex = SubResource("CameraTexture_r2du3")
 rect = NodePath("../../BGCanvasLayer/TextureRect")
+
+[node name="TrackSelectorMenu" type="MenuButton" parent="MethodCanvasLayer" unique_id=1299725757 node_paths=PackedStringArray("xrOrigin", "vive", "cameraOrigin")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -135.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Tracker Selector"
+script = ExtResource("7_geic2")
+xrOrigin = NodePath("../../VRCamViewport/XROrigin3D")
+vive = NodePath("../../VRCamViewport/XROrigin3D/ViveTrackerCamera")
+cameraOrigin = NodePath("../../VRCamViewport/XROrigin3D/RelativeTo")
 
 [node name="PointCanvasLayer" type="CanvasLayer" parent="." unique_id=105748331]
 visible = false
