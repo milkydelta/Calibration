@@ -9,7 +9,6 @@ func _ready() -> void:
 	pcl = get_node_or_null("/root/Node3D/PointCanvasLayer")
 
 func _pressed() -> void:
-	get_canvas_layer_node().visible = false
-	if sceneroot != null:
-		sceneroot.set_method(method)
-	pcl.visible = true
+	if sceneroot != null and sceneroot.set_method(method) ==0:
+		get_canvas_layer_node().visible = false
+		pcl.visible = true

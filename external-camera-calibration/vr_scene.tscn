@@ -10,6 +10,13 @@
 [ext_resource type="Script" uid="uid://b0b064lywa32n" path="res://scripts/slider_x.gd" id="6_nvmjw"]
 [ext_resource type="Script" uid="uid://b3u1ciygi581l" path="res://scripts/webcam_menu.gd" id="6_r2du3"]
 [ext_resource type="Script" uid="uid://dcvonx04pmo34" path="res://scripts/export_calibration.gd" id="9_cuca5"]
+[ext_resource type="Script" uid="uid://fcdngypf4ow6" path="res://scripts/camera_holder_origin.gd" id="11_r2du3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_poouq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_geic2"]
+shading_mode = 0
+albedo_color = Color(1, 0.4666667, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m18wo"]
 
@@ -69,9 +76,9 @@ albedo_color = Color(0, 0.18333316, 1, 1)
 shading_mode = 0
 albedo_color = Color(1, 0.9333334, 0, 1)
 
-[node name="Node3D" type="Node3D" unique_id=610465811 node_paths=PackedStringArray("specCam", "leftCon", "rightCon", "textLabel", "countLabel", "rcen", "bcen", "ycen")]
+[node name="Node3D" type="Node3D" unique_id=610465811 node_paths=PackedStringArray("specCam", "leftCon", "rightCon", "textLabel", "countLabel", "rcen", "bcen", "ycen", "zeroPoint")]
 script = ExtResource("1_eatjh")
-specCam = NodePath("CalibratedCameraHolder/Camera3D")
+specCam = NodePath("CameraHolderOrigin/CalibratedCameraHolder/Camera3D")
 leftCon = NodePath("VRCamViewport/XROrigin3D/LeftCon")
 rightCon = NodePath("VRCamViewport/XROrigin3D/RightCon")
 textLabel = NodePath("PointCanvasLayer/TopLabel")
@@ -79,10 +86,19 @@ countLabel = NodePath("PointCanvasLayer/PointCount/num")
 rcen = NodePath("RED")
 bcen = NodePath("BLUE")
 ycen = NodePath("YLW")
+zeroPoint = NodePath("VRCamViewport/XROrigin3D/RelativeTo")
 
 [node name="VRCamViewport" type="SubViewport" parent="." unique_id=1426819499]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="VRCamViewport" unique_id=565836913]
+
+[node name="RelativeTo" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=1538335991]
+
+[node name="Orange" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D/RelativeTo" unique_id=162532931]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+layers = 540672
+mesh = SubResource("SphereMesh_poouq")
+surface_material_override/0 = SubResource("StandardMaterial3D_geic2")
 
 [node name="OriginCube" type="MeshInstance3D" parent="VRCamViewport/XROrigin3D" unique_id=540005069]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
@@ -132,6 +148,9 @@ mesh = SubResource("SphereMesh_m18wo")
 
 [node name="XR_Init_Script" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=343970448]
 script = ExtResource("1_a202f")
+
+[node name="ViveTrackerCamera" type="XRNode3D" parent="VRCamViewport/XROrigin3D" unique_id=2070367482]
+tracker = &"/user/vive_tracker_htcx/role/camera"
 
 [node name="FakeCamViewport" type="SubViewport" parent="." unique_id=1571269763]
 size = Vector2i(1920, 1080)
@@ -505,7 +524,7 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 script = ExtResource("6_dat4l")
-cam = NodePath("../../../CalibratedCameraHolder/Camera3D")
+cam = NodePath("../../../CameraHolderOrigin/CalibratedCameraHolder/Camera3D")
 
 [node name="nameX" type="Label" parent="AdjustmentCanvasLayer/Panel/GridContainer" unique_id=1487375688]
 layout_mode = 2
@@ -669,7 +688,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Export Config"
 script = ExtResource("9_cuca5")
-specCam = NodePath("../../CalibratedCameraHolder/Camera3D")
+specCam = NodePath("../../CameraHolderOrigin/CalibratedCameraHolder/Camera3D")
 
 [node name="BGCanvasLayer" type="CanvasLayer" parent="." unique_id=408464210]
 layer = -1
@@ -688,32 +707,37 @@ expand_mode = 1
 environment = SubResource("Environment_m18wo")
 
 [node name="RED" type="MeshInstance3D" parent="." unique_id=1670846742]
-transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 20, 0)
 layers = 524288
 mesh = SubResource("SphereMesh_m18wo")
 surface_material_override/0 = SubResource("StandardMaterial3D_qmmxw")
 
 [node name="BLUE" type="MeshInstance3D" parent="." unique_id=988721280]
-transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 20, 0)
 layers = 540672
 mesh = SubResource("SphereMesh_m18wo")
 surface_material_override/0 = SubResource("StandardMaterial3D_nvmjw")
 
 [node name="YLW" type="MeshInstance3D" parent="." unique_id=873918653]
-transform = Transform3D(0.025, 0, 0, 0, -0.010108928, -0.02286503, 0, 0.02286503, -0.010108928, 0, 20, 0)
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 20, 0)
 layers = 540672
 mesh = SubResource("SphereMesh_m18wo")
 surface_material_override/0 = SubResource("StandardMaterial3D_dat4l")
 
-[node name="CalibratedCameraHolder" type="Node3D" parent="." unique_id=1945270324]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 10, 0)
+[node name="CameraHolderOrigin" type="Node3D" parent="." unique_id=1679785095 node_paths=PackedStringArray("sceneroot")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+script = ExtResource("11_r2du3")
+sceneroot = NodePath("..")
 
-[node name="Camera3D" type="Camera3D" parent="CalibratedCameraHolder" unique_id=1838429439]
+[node name="CalibratedCameraHolder" type="Node3D" parent="CameraHolderOrigin" unique_id=1945270324]
+transform = Transform3D(40, 0, 0, 0, -1.7484556e-06, -40, 0, 40, -1.7484556e-06, 0, 400, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolderOrigin/CalibratedCameraHolder" unique_id=1838429439]
 cull_mask = 507903
 near = 0.01
 far = 100.0
 
-[node name="CalibratedCameraSphere" type="MeshInstance3D" parent="CalibratedCameraHolder/Camera3D" unique_id=190579668]
+[node name="CalibratedCameraSphere" type="MeshInstance3D" parent="CameraHolderOrigin/CalibratedCameraHolder/Camera3D" unique_id=190579668]
 transform = Transform3D(0.05, 0, 0, 0, 0.04502463, -0.021743566, 0, 0.021743566, 0.04502463, 0, 0, 0)
 layers = 524288
 mesh = SubResource("SphereMesh_m18wo")
