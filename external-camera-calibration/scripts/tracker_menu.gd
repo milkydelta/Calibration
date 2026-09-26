@@ -24,5 +24,5 @@ func pre_popup() -> void:
 	var pop = get_popup()
 	pop.clear()
 	pop.add_item("Static", 1024)
-	if vive.get_is_active() or true:
+	if vive.get_is_active():
 		pop.add_item("OpenXR: Vive tracker role - Camera", 2048)
