@@ -25,6 +25,10 @@ func godot_to_unity_rot(euler_rad: Vector3) -> Vector3:
 	#pass
 
 func _pressed() -> void:
+	var camOrigin = specCam.get_parent_node_3d().get_parent_node_3d()
+	camOrigin.global_position = Vector3.ZERO
+	camOrigin.global_basis = Basis.IDENTITY
+	
 	var pos = godot_to_unity(specCam.global_position)
 	var rot = godot_to_unity_rot(specCam.global_rotation)
 	var file = FileAccess.open(OS.get_executable_path().get_base_dir() + "/externalcamera.cfg",FileAccess.WRITE)

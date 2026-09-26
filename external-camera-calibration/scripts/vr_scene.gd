@@ -78,6 +78,7 @@ func _receive_estimation(pos:Vector3, rot:Quaternion, vFov:float):
 	camHolder.position = pos
 	camHolder.quaternion = rot
 	specCam.fov=vFov
+	base_fov=vFov
 	
 	situationState = SitState.ESTIMATED
 	adjlayer.visible= true
