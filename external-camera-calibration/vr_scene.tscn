@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://djikr51h68out" path="res://scripts/tracker_menu.gd" id="7_geic2"]
 [ext_resource type="Script" uid="uid://dcvonx04pmo34" path="res://scripts/export_calibration.gd" id="9_cuca5"]
 [ext_resource type="Script" uid="uid://fcdngypf4ow6" path="res://scripts/camera_holder_origin.gd" id="11_r2du3"]
+[ext_resource type="Script" uid="uid://ba8unnwox3wj6" path="res://scripts/vmc_manager.gd" id="13_d66dj"]
+[ext_resource type="Script" uid="uid://w8v0v76wc4r2" path="res://addons/godOSC/scripts/OSCServer.gd" id="14_irmg0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_poouq"]
 
@@ -153,6 +155,8 @@ script = ExtResource("1_a202f")
 [node name="ViveTrackerCamera" type="XRController3D" parent="VRCamViewport/XROrigin3D" unique_id=1641508086]
 tracker = &"/user/vive_tracker_htcx/role/camera"
 show_when_tracked = true
+
+[node name="OSCTracker" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=1449756134]
 
 [node name="FakeCamViewport" type="SubViewport" parent="." unique_id=1571269763]
 size = Vector2i(1920, 1080)
@@ -323,7 +327,7 @@ script = ExtResource("6_r2du3")
 tex = SubResource("CameraTexture_r2du3")
 rect = NodePath("../../BGCanvasLayer/TextureRect")
 
-[node name="TrackSelectorMenu" type="MenuButton" parent="MethodCanvasLayer" unique_id=1299725757 node_paths=PackedStringArray("xrOrigin", "vive", "cameraOrigin")]
+[node name="TrackSelectorMenu" type="MenuButton" parent="MethodCanvasLayer" unique_id=1299725757 node_paths=PackedStringArray("xrOrigin", "vive", "cameraOrigin", "vmc")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -335,6 +339,7 @@ script = ExtResource("7_geic2")
 xrOrigin = NodePath("../../VRCamViewport/XROrigin3D")
 vive = NodePath("../../VRCamViewport/XROrigin3D/ViveTrackerCamera")
 cameraOrigin = NodePath("../../VRCamViewport/XROrigin3D/RelativeTo")
+vmc = NodePath("../../VMCManager")
 
 [node name="PointCanvasLayer" type="CanvasLayer" parent="." unique_id=105748331]
 visible = false
@@ -754,6 +759,16 @@ far = 100.0
 transform = Transform3D(0.05, 0, 0, 0, 0.04502463, -0.021743566, 0, 0.021743566, 0.04502463, 0, 0, 0)
 layers = 524288
 mesh = SubResource("SphereMesh_m18wo")
+
+[node name="VMCManager" type="Node" parent="." unique_id=767637826 node_paths=PackedStringArray("nod")]
+script = ExtResource("13_d66dj")
+nod = NodePath("../VRCamViewport/XROrigin3D/OSCTracker")
+metadata/_custom_type_script = "uid://ba8unnwox3wj6"
+
+[node name="OSCServer" type="Node" parent="VMCManager" unique_id=1371018307]
+script = ExtResource("14_irmg0")
+port = 27769
+metadata/_custom_type_script = "uid://w8v0v76wc4r2"
 
 [connection signal="button_released" from="VRCamViewport/XROrigin3D/LeftCon" to="." method="_on_left_con_button_released"]
 [connection signal="button_released" from="VRCamViewport/XROrigin3D/RightCon" to="." method="_on_right_con_button_released"]
