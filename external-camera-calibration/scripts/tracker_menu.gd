@@ -17,6 +17,8 @@ func id_press(id: int) -> void:
 	elif id == 1024:
 		orig = xrOrigin
 		
+	#print(XRServer.get_trackers(255))
+		
 	
 	cameraOrigin.reparent(orig,false)
 
@@ -24,5 +26,5 @@ func pre_popup() -> void:
 	var pop = get_popup()
 	pop.clear()
 	pop.add_item("Static", 1024)
-	if vive.get_is_active():
+	if vive.get_is_active() or vive.visible:
 		pop.add_item("OpenXR: Vive tracker role - Camera", 2048)

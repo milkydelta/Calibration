@@ -150,8 +150,9 @@ mesh = SubResource("SphereMesh_m18wo")
 [node name="XR_Init_Script" type="Node3D" parent="VRCamViewport/XROrigin3D" unique_id=343970448]
 script = ExtResource("1_a202f")
 
-[node name="ViveTrackerCamera" type="XRNode3D" parent="VRCamViewport/XROrigin3D" unique_id=2070367482]
+[node name="ViveTrackerCamera" type="XRController3D" parent="VRCamViewport/XROrigin3D" unique_id=1641508086]
 tracker = &"/user/vive_tracker_htcx/role/camera"
+show_when_tracked = true
 
 [node name="FakeCamViewport" type="SubViewport" parent="." unique_id=1571269763]
 size = Vector2i(1920, 1080)
