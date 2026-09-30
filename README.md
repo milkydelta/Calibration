@@ -31,6 +31,16 @@ If you know how to fix that issue, let me know. I would like to use SteamVR agai
 
 In the bottom-right is some white text. Click that, and a pop-up menu will appear, with a single entry for each available camera. Choose your camera, and it's feed will appear as the window background, stretched to the window dimensions.
 
+### Choosing a Tracker
+
+Similarly, in the top-right is some more white text. Click that, and a menu will appear, with a single entry for each available camera. If you do not select a tracker, the calibration is relative to the origin of your VR playspace. That is the "Static" option.
+
+On OpenXR runtimes supporting the `XR_HTCX_vive_tracker_interaction` extension, an option will appear for the Vive tracker role "Camera", if that tracker is connected and tracking. I am unsure if this **must** be a Vive tracker or if any tracker will suffice.
+
+On UDP port 27769, there is an OSC server listening for messages with the address `/VMC/Ext/Tra/Pos`. Any messages with the correct parameters will appear in the tracker list, as long as they were sent less than 5 seconds ago. A program is included in the `openvr_osc` directory. That will connect to an OpenVR runtime and send the details of all tracked devices over OSC.
+
+A small orange sphere exists in the scene. That will tell you the current location of the active tracker.
+
 ### Choosing a method
 
 There are three ways to do calibration, though only one is finished
