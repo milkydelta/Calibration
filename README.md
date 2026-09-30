@@ -33,7 +33,7 @@ In the bottom-right is some white text. Click that, and a pop-up menu will appea
 
 ### Choosing a Tracker
 
-Similarly, in the top-right is some more white text. Click that, and a menu will appear, with a single entry for each available camera. If you do not select a tracker, the calibration is relative to the origin of your VR playspace. That is the "Static" option.
+Similarly, in the top-right is some more white text. Click that, and a menu will appear, with a single entry for each available tracker. If you do not select a tracker, the calibration is relative to the origin of your VR playspace. That is the "Static" option.
 
 On OpenXR runtimes supporting the `XR_HTCX_vive_tracker_interaction` extension, an option will appear for the Vive tracker role "Camera", if that tracker is connected and tracking. I am unsure if this **must** be a Vive tracker or if any tracker will suffice.
 
