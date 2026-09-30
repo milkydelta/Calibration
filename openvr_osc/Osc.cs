@@ -16,7 +16,7 @@ public sealed partial class OscClient
         _encoder.Append(qx);
         _encoder.Append(qy);
         _encoder.Append(qz);
-        _encoder.Append(qx);
+        _encoder.Append(qw);
         _socket.Send(_encoder.Buffer, _encoder.Length, SocketFlags.None);
     }
 }
