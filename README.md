@@ -63,6 +63,8 @@ You may be asked to collect a point at the camera lens. That description is not 
 
 Once enough points have been collected, point collection is disabled, and the overlaid spectator camera is given the estimated details of your physical camera. In the top left is a panel with some sliders you can use to adjust the camera parameters. Those adjustments are in the Godot coordinate system, so forward is -Z. Distance is adjusted in cm and angles are adjusted in degrees, both with 1 decimal place of precision.
 
+You can use your scroll wheel.
+
 When you're happy with your calibration, press the button in the bottom-right. That'll export it to a file called `externalcamera.cfg`, next to the main executable. Exported coordinates are first converted to the Unity coordinate system.
 
 ## Building
