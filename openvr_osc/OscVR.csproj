@@ -9,7 +9,7 @@
   <PropertyGroup>
     <Description>Send OpenVR trackers over OSC</Description>
     <Company>milkydelta</Company>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <AssemblyName>openvr_osc</AssemblyName>
   </PropertyGroup>
 
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DefineConstants>PCL</DefineConstants>
+    <DefineConstants>PCL,UNITY_5_3_OR_NEWER</DefineConstants>
   </PropertyGroup>
 
 

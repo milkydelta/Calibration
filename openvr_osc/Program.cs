@@ -21,6 +21,7 @@ class Program
     static string dest = "127.0.0.1";
     static int port = 27769;
     static int rate = 90;
+    static int verbose=0;
 
     static Int64 count=0;
 
@@ -46,6 +47,7 @@ class Program
         {
             {"port=", "Destination OSC port", v => Int32.TryParse(v, out port)},
             {"rate=", "Frequency at which OpenVR is polled for new poses", v => Int32.TryParse(v, out rate)},
+            {"v", v => verbose++}
         };
 
         try
@@ -96,23 +98,19 @@ class Program
 
                     if (item.bPoseIsValid)
                     {
-                        var mat = item.mDeviceToAbsoluteTracking.ToSystemNumericsMatrix();
+                        var mat = item.mDeviceToAbsoluteTracking;
 
-                        Vector3 s, p;
-                        Quaternion q;
-                        Matrix4x4.Decompose(mat, out s, out q, out p);
-
-                        // Convert OpenVR coordinates to Unity.
-                        q.W = -q.W;
-                        q.X = -q.X;
-                        q.Y = -q.Y;
-                        p.Z = -p.Z;
+                        Vector3 p = mat.GetPosition();
+                        Quaternion q = mat.GetRotation();
 
                         count++;
 
                         try
                         {
                             osc.Send("/VMC/Ext/Tra/Pos", serialArray[i], p.X, p.Y, p.Z, q.X, q.Y, q.Z, q.W);
+                            if (verbose > 0){
+                                Console.WriteLine($"{serialArray[i]} {p} {q}");
+                            }
                         }
                         catch (System.Net.Sockets.SocketException e)
                         {
